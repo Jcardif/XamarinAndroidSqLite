@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\GetAllPlanesActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Custom Events\OnSubmitAeroplaneEventArgs.cs" />
     <Compile Include="Dialog Fragments\SubmitAeroplaneDialogFragment.cs" />

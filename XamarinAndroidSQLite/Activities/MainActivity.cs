@@ -50,6 +50,9 @@ namespace XamarinAndroidSQLite.Activities
                     submitAeroplane.Show(transaction, "tag");
                     submitAeroplane.OnSubmitAeroplane += SubmitAeroplane_OnSubmitAeroplane;
                     break;
+                case Resource.Id.getdatabtn:
+                    Toast.MakeText(this,$"{new DatabaseRepository().GetAllRecords().Count}", ToastLength.Short).Show();
+                    break;
             }
         }
 

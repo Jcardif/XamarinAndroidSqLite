@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Android.Widget;
 using Mono.Data.Sqlite;
@@ -51,6 +52,23 @@ namespace XamarinAndroidSQLite.ORM
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public List<Aeroplanes> GetAllRecords()
+        {
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "myplanes.db3");
+            var aeroplaneTable=new SQLiteConnection(dbPath).Table<Aeroplanes>();
+            List<Aeroplanes> plane = new List<Aeroplanes>();
+            foreach (var aeroplanes in aeroplaneTable)
+            {
+                var planes = new Aeroplanes()
+                {
+                    Id = aeroplanes.Id,
+                    Name = aeroplanes.Name
+                };
+                plane.Add(planes);
+            }
+            return plane;
         }
     }
 }
