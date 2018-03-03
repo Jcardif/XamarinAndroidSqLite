@@ -1,7 +1,9 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using XamarinAndroidSQLite.Custom_Events;
 using XamarinAndroidSQLite.Dialog_Fragments;
 using XamarinAndroidSQLite.ORM;
 
@@ -53,7 +55,18 @@ namespace XamarinAndroidSQLite.Activities
                 case Resource.Id.getdatabtn:
                     Toast.MakeText(this,$"{new DatabaseRepository().GetAllRecords().Count}", ToastLength.Short).Show();
                     break;
+                case Resource.Id.getDataByid:
+                    var transaction1 = FragmentManager.BeginTransaction();
+                    var submitPlaneId = new SubmitPlaneIdDialogFragment();
+                    submitPlaneId.Show(transaction1, "tag");
+                    submitPlaneId.OnSubmitPlaneId += SubmitPlaneId_OnSubmitPlaneId;
+                    break;
             }
+        }
+
+        private void SubmitPlaneId_OnSubmitPlaneId(object sender, OnSubmitAeroPlaneId e)
+        {
+            Toast.MakeText(this,new DatabaseRepository().GetSpecifiAeroplane(e.Id).Name, ToastLength.Short).Show();
         }
 
         private void SubmitAeroplane_OnSubmitAeroplane(object sender, Custom_Events.OnSubmitAeroplaneEventArgs e)

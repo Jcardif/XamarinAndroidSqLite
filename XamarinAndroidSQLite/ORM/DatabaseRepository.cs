@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Android.Widget;
+using Java.IO;
 using Mono.Data.Sqlite;
 using XamarinAndroidSQLite.Models;
+using Console = System.Console;
 
 namespace XamarinAndroidSQLite.ORM
 {
@@ -69,6 +71,27 @@ namespace XamarinAndroidSQLite.ORM
                 plane.Add(planes);
             }
             return plane;
+        }
+
+        public Aeroplanes GetSpecifiAeroplane(int id)
+        {
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "myplanes.db3");
+            try
+            {
+                var item = new SQLiteConnection(dbPath).Get<Aeroplanes>(id);
+                Aeroplanes plane = new Aeroplanes()
+                    {
+                        Id = item.Id,
+                        Name = item.Name
+                    };
+                    return plane;
+         
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

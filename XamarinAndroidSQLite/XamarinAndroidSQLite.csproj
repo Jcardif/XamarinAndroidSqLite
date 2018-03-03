@@ -107,7 +107,9 @@
     <Compile Include="Activities\GetAllPlanesActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Custom Events\OnSubmitAeroplaneEventArgs.cs" />
+    <Compile Include="Custom Events\OnSubmitAeroPlaneId.cs" />
     <Compile Include="Dialog Fragments\SubmitAeroplaneDialogFragment.cs" />
+    <Compile Include="Dialog Fragments\SubmitPlaneIdDialogFragment.cs" />
     <Compile Include="Models\Aeroplanes.cs" />
     <Compile Include="ORM\DatabaseRepository.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -127,6 +129,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AllAeroplanes.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\GetPlaneById.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
