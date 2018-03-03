@@ -1,10 +1,11 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
+using XamarinAndroidSQLite.Dialog_Fragments;
 using XamarinAndroidSQLite.ORM;
 
-namespace XamarinAndroidSQLite
+namespace XamarinAndroidSQLite.Activities
 {
     [Activity(Label = "XamarinAndroidSQLite", MainLauncher = true)]
     public class MainActivity : Activity, View.IOnClickListener
@@ -43,9 +44,19 @@ namespace XamarinAndroidSQLite
                 case Resource.Id.createtableBtn:
                     Toast.MakeText(this,new DatabaseRepository().CreateTable(),ToastLength.Short).Show();
                     break;
+                case Resource.Id.insertRecordBtn:
+                    var transaction = FragmentManager.BeginTransaction();
+                    var submitAeroplane = new SubmitAeroplaneDialogFragment();
+                    submitAeroplane.Show(transaction, "tag");
+                    submitAeroplane.OnSubmitAeroplane += SubmitAeroplane_OnSubmitAeroplane;
+                    break;
             }
         }
 
+        private void SubmitAeroplane_OnSubmitAeroplane(object sender, Custom_Events.OnSubmitAeroplaneEventArgs e)
+        {
+            Toast.MakeText(this, new DatabaseRepository().InserRecord(e.Name), ToastLength.Short).Show();
+        }
     }
 }
 
