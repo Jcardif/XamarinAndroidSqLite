@@ -93,5 +93,27 @@ namespace XamarinAndroidSQLite.ORM
                 throw;
             }
         }
+
+        public string UpdateExistingAeroplane(int id,Aeroplanes aeroplane)
+        {
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "myplanes.db3");
+            try
+            {
+                var aero=new SQLiteConnection(dbPath).Get<Aeroplanes>(id);
+                aero.Name = aeroplane.Name;
+                new SQLiteConnection(dbPath).Update(aero);
+                return "Success";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public string DeleteAeroplane(int id, Aeroplanes aeroplane)
+        {
+            
+        }
     }
 }
