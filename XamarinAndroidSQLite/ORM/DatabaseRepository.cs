@@ -80,17 +80,21 @@ namespace XamarinAndroidSQLite.ORM
             {
                 var item = new SQLiteConnection(dbPath).Get<Aeroplanes>(id);
                 Aeroplanes plane = new Aeroplanes()
-                    {
-                        Id = item.Id,
-                        Name = item.Name
-                    };
-                    return plane;
-         
+                {
+                    Id = item.Id,
+                    Name = item.Name
+                };
+                return plane;
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
+            }
+            finally
+            {
+                new SQLiteConnection(dbPath).Close();
             }
         }
 
@@ -111,9 +115,9 @@ namespace XamarinAndroidSQLite.ORM
             }
         }
 
-        public string DeleteAeroplane(int id, Aeroplanes aeroplane)
-        {
+        //public string DeleteAeroplane(int id, Aeroplanes aeroplane)
+        //{
             
-        }
+        //}
     }
 }
